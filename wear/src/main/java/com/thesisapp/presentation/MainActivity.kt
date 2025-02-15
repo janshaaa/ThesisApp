@@ -162,6 +162,7 @@ class MainActivity : ComponentActivity(), SensorEventListener {
     private fun stopRecording() {
         isRecording = false
         sensorManager.unregisterListener(this)
+        Log.d("SensorData", "Recording stopped. Sensors unregistered.")
     }
 
     // when app is closed
