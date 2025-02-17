@@ -17,7 +17,7 @@ data class SensorData(
 ) {
     companion object {
         fun getCurrentTime(): String {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()) // Added milliseconds
             return dateFormat.format(Date())
         }
     }
