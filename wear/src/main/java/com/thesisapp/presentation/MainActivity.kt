@@ -6,6 +6,7 @@
 package com.thesisapp.presentation
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -47,6 +48,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.thesisapp.service.SensorService
 
 class MainActivity : ComponentActivity(), SensorEventListener {
     // initialize sensors
@@ -156,13 +158,15 @@ class MainActivity : ComponentActivity(), SensorEventListener {
 
     private fun startRecording() {
         isRecording = true
-        registerSensors()
+        val serviceIntent = Intent(this, SensorService::class.java)
+        startForegroundService(serviceIntent)
     }
 
     private fun stopRecording() {
         isRecording = false
-        sensorManager.unregisterListener(this)
-        Log.d("SensorData", "Recording stopped. Sensors unregistered.")
+        val serviceIntent = Intent(this, SensorService::class.java)
+        stopService(serviceIntent)
+        Log.d("SensorData", "Recording stopped.")
     }
 
     // when app is closed

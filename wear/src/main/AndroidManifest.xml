@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Permissions required -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
     <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
 
+    <!-- Declare Wear OS compatibility -->
     <uses-feature android:name="android.hardware.type.watch" />
 
     <application
@@ -15,14 +19,13 @@
         android:theme="@android:style/Theme.DeviceDefault"
         android:largeHeap="true"
         android:hardwareAccelerated="true">
+
+        <!-- Required for Wear OS apps -->
         <uses-library
             android:name="com.google.android.wearable"
             android:required="true" />
 
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
+        <!-- If app is standalone (does not need a phone companion) -->
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
@@ -34,10 +37,17 @@
             android:theme="@style/MainActivityTheme.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Foreground Sensor Service -->
+        <service
+            android:name=".service.SensorService"
+            android:foregroundServiceType="health"
+            android:exported="false"
+            android:enabled="true"
+            android:permission="android.permission.WAKE_LOCK" />
     </application>
 
 </manifest>
