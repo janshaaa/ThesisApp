@@ -10,7 +10,7 @@ import java.util.Locale
 @Entity(tableName = "sensor_data")
 data class SensorData(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    val timestamp: String = getCurrentTime(),
+    val timestamp: String = getCurrentTime(), // Change to formatted time
     val type: String?,
     val x: Float?,
     val y: Float?,
@@ -18,7 +18,7 @@ data class SensorData(
 ) : Serializable {
     companion object {
         fun getCurrentTime(): String {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()) // Added milliseconds
             return dateFormat.format(Date())
         }
     }

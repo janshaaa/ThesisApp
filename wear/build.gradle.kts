@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.androidx.wear.tooling.preview)
     //implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.ui.test.junit4.android)
+    implementation(libs.androidx.localbroadcastmanager)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
@@ -66,4 +68,11 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
+
+    val coroutine_version = "1.8.1"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version")
+
+    implementation("com.google.android.gms:play-services-wearable:18.0.0")
+    implementation("com.google.code.gson:gson:2.10")
 }
