@@ -9,16 +9,18 @@ import java.util.Locale
 @Entity(tableName = "sensor_data")
 data class SensorData(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    val timestamp: String = getCurrentTime(), // Change to formatted time
-    val type: String?,
-    val x: Float?,
-    val y: Float?,
-    val z: Float?
-) {
-    companion object {
-        fun getCurrentTime(): String {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()) // Added milliseconds
-            return dateFormat.format(Date())
-        }
-    }
-}
+    val timestamp: Long = System.currentTimeMillis(),
+
+    // Accelerometer
+    val accel_x: Float? = null,
+    val accel_y: Float? = null,
+    val accel_z: Float? = null,
+
+    // Gyroscope
+    val gyro_x: Float? = null,
+    val gyro_y: Float? = null,
+    val gyro_z: Float? = null,
+
+    // Heart Rate
+    val heart_rate: Float? = null
+)
