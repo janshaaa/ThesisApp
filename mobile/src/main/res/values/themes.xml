@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.ThesisApp" parent="Base.Theme.ThesisApp" />
+
+    <style name="Theme.LaSwim.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/white</item> <!-- Optional solid fallback -->
+    </style>
 </resources>

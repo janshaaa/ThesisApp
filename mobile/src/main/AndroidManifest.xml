@@ -12,15 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ThesisApp"
         tools:targetApi="31">
+
+        <!-- Splash screen activity now launches first -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.LaSwim.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Main app activity -->
+        <activity
+            android:name=".MainDashboardActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
