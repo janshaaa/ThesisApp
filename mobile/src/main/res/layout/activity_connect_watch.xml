@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewFlipper"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:autoStart="false"
+    android:inAnimation="@android:anim/fade_in"
+    android:outAnimation="@android:anim/fade_out">
+
+    <!-- 1) Prompt user to connect -->
+    <include layout="@layout/layout_connect_prompt" />
+
+    <!-- 2) Searching animation -->
+    <include layout="@layout/layout_connect_searching" />
+
+    <!-- 3) Error if no devices found -->
+    <include layout="@layout/layout_connect_error" />
+
+    <!-- 4) Radar w/ pop-up icons -->
+    <include layout="@layout/layout_connect_results_radar" />
+
+    <!-- 5) List of devices found -->
+    <include layout="@layout/layout_connect_select_device" />
+
+</ViewFlipper>

@@ -10,7 +10,11 @@
 
     <!-- Custom colors -->
     <color name="blue">#B8F2F0</color>
-    <color name="lightBlue">#DCEEFF</color>
-    <color name="lightGray">#E0E0E0</color>
-    <color name="offWhite">#FAFAF8</color>
+    <color name="light_blue">#DCEEFF</color>
+    <color name="light_gray">#E0E0E0</color>
+    <color name="off_white">#FAFAF8</color>
+    <color name="progress_bg">#DDEDEE</color>
+    <color name="primary_teal">#1BCAC3</color>
+    <color name="button_gray">#D6E2EF</color>
+    <color name="text_dark">#2C5A4E</color>
 </resources>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/offWhite"
+    android:background="@color/off_white"
     android:gravity="center_horizontal">
 
     <!-- Header -->
@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,14 +26,14 @@
             android:text="DASHBOARD"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:layout_marginStart="10dp" />
+            android:layout_marginStart="10dp"/>
     </LinearLayout>
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="?android:attr/listDivider" />
+        android:background="?android:attr/listDivider"/>
 
     <!-- Connect Smartwatch (Circle Button) -->
     <Button
@@ -49,7 +49,7 @@
         android:textSize="16sp"
         android:drawableTop="@drawable/ic_watch"
         android:gravity="center"
-        android:shape="oval" />
+        android:shape="oval"/>
 
     <!-- Four Square Buttons -->
     <GridLayout
@@ -69,8 +69,8 @@
             android:layout_columnWeight="1"
             android:enabled="false"
             android:text="Start Tracking"
-            android:backgroundTint="@color/lightGray"
-            android:drawableTop="@drawable/ic_swim" />
+            android:backgroundTint="@color/light_gray"
+            android:drawableTop="@drawable/ic_swim"/>
 
         <!-- View History -->
         <Button
@@ -80,8 +80,8 @@
             android:layout_columnWeight="1"
             android:text="View History"
             android:textColor="@color/black"
-            android:backgroundTint="@color/lightBlue"
-            android:drawableTop="@drawable/ic_history" />
+            android:backgroundTint="@color/light_blue"
+            android:drawableTop="@drawable/ic_history"/>
 
         <!-- Manage Swimmers -->
         <Button
@@ -91,8 +91,8 @@
             android:layout_columnWeight="1"
             android:text="Manage Swimmers"
             android:textColor="@color/black"
-            android:backgroundTint="@color/lightBlue"
-            android:drawableTop="@drawable/ic_calendar" />
+            android:backgroundTint="@color/light_blue"
+            android:drawableTop="@drawable/ic_calendar"/>
 
         <!-- Settings -->
         <Button
@@ -102,7 +102,7 @@
             android:layout_columnWeight="1"
             android:text="Settings"
             android:textColor="@color/black"
-            android:backgroundTint="@color/lightBlue"
-            android:drawableTop="@drawable/ic_settings" />
+            android:backgroundTint="@color/light_blue"
+            android:drawableTop="@drawable/ic_settings"/>
     </GridLayout>
 </LinearLayout>
