@@ -16,10 +16,13 @@
     <!-- 3) Error if no devices found -->
     <include layout="@layout/layout_connect_error" />
 
-    <!-- 4) Radar w/ pop-up icons -->
-    <include layout="@layout/layout_connect_results_radar" />
-
-    <!-- 5) List of devices found -->
+    <!-- 4) List of devices found -->
     <include layout="@layout/layout_connect_select_device" />
+
+    <!-- 5) Connecting prompt -->
+    <include layout="@layout/layout_connecting_device" />
+
+    <!-- 6) Successful connection -->
+    <include layout="@layout/layout_device_connected" />
 
 </ViewFlipper>
