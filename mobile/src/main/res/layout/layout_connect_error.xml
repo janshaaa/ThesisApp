@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/off_white"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginTop="16dp"
+        android:progress="60"
+        android:progressTint="@color/primary_teal"
+        android:backgroundTint="@color/light_gray"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connect your smartwatch"
+        android:textColor="#204A40"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_below="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sync your mobile app to your smartwatch to gather data"
+        android:textColor="#2C7C6F"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp" />
+
+    <ImageView
+        android:id="@+id/watchImage"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_na" />
+
+    <TextView
+        android:id="@+id/errorTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Device not found"
+        android:textColor="#204A40"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:id="@+id/errorSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Make sure the bluetooth is turned on on both devices"
+        android:textColor="#2C7C6F"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/tryAgainButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:text="Try Again"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:backgroundTint="#13C2A3"
+        android:textColor="@color/black" />
+</LinearLayout>
