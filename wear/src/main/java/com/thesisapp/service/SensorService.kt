@@ -33,7 +33,7 @@ class SensorService : Service(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
     private var accelerometer: Sensor? = null
     private var gyroscope: Sensor? = null
-    private var heartrate: Sensor? = null
+    private var heartRate: Sensor? = null
     private var ppg: Sensor? = null
     private var ecg: Sensor? = null
     private lateinit var database: AppDatabase
@@ -56,7 +56,7 @@ class SensorService : Service(), SensorEventListener {
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
         gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
-        heartrate = sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE)
+        heartRate = sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE)
         ppg = sensorManager.getDefaultSensor(Sensor.TYPE_DEVICE_PRIVATE_BASE + 1)
         ecg = sensorManager.getDefaultSensor(Sensor.TYPE_DEVICE_PRIVATE_BASE + 2)
 
@@ -80,7 +80,7 @@ class SensorService : Service(), SensorEventListener {
     private fun registerSensors() {
         accelerometer?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
         gyroscope?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
-        heartrate?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
+        heartRate?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
         ppg?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
         ecg?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
     }
@@ -110,7 +110,7 @@ class SensorService : Service(), SensorEventListener {
                 gyro_x = gyroValues!![0],
                 gyro_y = gyroValues!![1],
                 gyro_z = gyroValues!![2],
-                heartrate = heartRateValue,
+                heart_rate = heartRateValue,
                 ppg = ppgValue,
                 ecg = ecgValue
             )

@@ -22,7 +22,7 @@ data class SensorData(
     val gyro_z: Float? = null,
 
     // Heart Rate
-    val heartrate: Float? = null,
+    val heart_rate: Float? = null,
     val ppg: Float? = null,
     val ecg: Float? = null
 )
