@@ -25,12 +25,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
+private const val PPG_SENSOR_NAME = "PPG Sensor"
+private const val ECG_SENSOR_NAME = "ECG Sensor"
+
 class SensorService : Service(), SensorEventListener {
 
     private lateinit var sensorManager: SensorManager
     private var accelerometer: Sensor? = null
     private var gyroscope: Sensor? = null
-    private var heartRate: Sensor? = null
+    private var heartrate: Sensor? = null
+    private var ppg: Sensor? = null
+    private var ecg: Sensor? = null
     private lateinit var database: AppDatabase
     private val serviceScope = CoroutineScope(Dispatchers.IO + Job())
 
@@ -38,6 +43,8 @@ class SensorService : Service(), SensorEventListener {
     private var accelValues: FloatArray? = null
     private var gyroValues: FloatArray? = null
     private var heartRateValue: Float? = null
+    private var ppgValue: Float? = null
+    private var ecgValue: Float? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -49,8 +56,23 @@ class SensorService : Service(), SensorEventListener {
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
         gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
-        heartRate = sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE)
+        heartrate = sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE)
+        ppg = sensorManager.getDefaultSensor(Sensor.TYPE_DEVICE_PRIVATE_BASE + 1)
+        ecg = sensorManager.getDefaultSensor(Sensor.TYPE_DEVICE_PRIVATE_BASE + 2)
 
+        for (sensor in sensorManager.getSensorList(Sensor.TYPE_ALL)) {
+            when {
+                sensor.name.equals("PPG Sensor", ignoreCase = true) -> {
+                    ppg = sensor
+                    Log.i("SensorService", "PPG sensor found: ${sensor.name}")
+                }
+
+                sensor.name.equals("ECG Sensor", ignoreCase = true) -> {
+                    ecg = sensor
+                    Log.i("SensorService", "ECG sensor found: ${sensor.name}")
+                }
+            }
+        }
         requestBatteryOptimizationExemption()
         registerSensors()
     }
@@ -58,7 +80,9 @@ class SensorService : Service(), SensorEventListener {
     private fun registerSensors() {
         accelerometer?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
         gyroscope?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
-        heartRate?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
+        heartrate?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
+        ppg?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
+        ecg?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_FASTEST, 100000) }
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
@@ -70,8 +94,15 @@ class SensorService : Service(), SensorEventListener {
             Sensor.TYPE_HEART_RATE -> heartRateValue = event.values[0]
         }
 
+        when (event.sensor.name) {
+
+            PPG_SENSOR_NAME -> ppgValue = event.values[0]
+            ECG_SENSOR_NAME -> ecgValue = event.values[0]
+
+        }
+
         // Save only when all three types are available
-        if (accelValues != null && gyroValues != null && heartRateValue != null) {
+        if (accelValues != null && gyroValues != null && ppgValue != null && ecgValue!= null) {
             val currentData = SensorData(
                 accel_x = accelValues!![0],
                 accel_y = accelValues!![1],
@@ -79,7 +110,9 @@ class SensorService : Service(), SensorEventListener {
                 gyro_x = gyroValues!![0],
                 gyro_y = gyroValues!![1],
                 gyro_z = gyroValues!![2],
-                heart_rate = heartRateValue
+                heartrate = heartRateValue,
+                ppg = ppgValue,
+                ecg = ecgValue
             )
 
             serviceScope.launch {
@@ -91,6 +124,8 @@ class SensorService : Service(), SensorEventListener {
             accelValues = null
             gyroValues = null
             heartRateValue = null
+            ppgValue = null
+            ecgValue = null
         }
     }
 
